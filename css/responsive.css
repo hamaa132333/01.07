@@ -1,0 +1,44 @@
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .masonry-gallery { column-count: 2; }
+}
+
+@media (max-width: 640px) {
+  section { padding: 4rem 1.2rem; }
+
+  #envelope { width: 260px; height: 170px; }
+  #envelope-caption { font-size: 1.6rem; }
+
+  #letter-paper { padding: 2.2rem 1.6rem; }
+  #letter-content { font-size: 1.25rem; }
+
+  .countdown-unit { min-width: 68px; padding: 0.9rem 1rem; }
+  .countdown-unit span { font-size: 1.5rem; }
+
+  .masonry-gallery { column-count: 1; }
+
+  #love-quote { font-size: 1.6rem; }
+
+  #final-text h2 { font-size: 2rem; }
+  .final-sub-line { font-size: 1.05rem; }
+
+  #music-control { bottom: 1rem; right: 1rem; }
+  #music-toggle { width: 46px; height: 46px; font-size: 1.1rem; }
+
+
+  .ornate-btn { font-size: 0.95rem; padding: 0.8rem 1.8rem; }
+}
+
+@media (max-width: 380px) {
+  #envelope { width: 220px; height: 145px; }
+  .countdown-grid { gap: 0.7rem; }
+  .countdown-unit { min-width: 58px; padding: 0.7rem 0.8rem; }
+}
+
+/* Respect small-height mobile viewports for the bloom intro */
+@media (max-height: 560px) {
+  #bloom-hint { margin-bottom: 4vh; font-size: 1.1rem; }
+}

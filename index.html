@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>For the Love of My Life</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ============================= -->
+<!-- OPENING BLOOM SCREEN          -->
+<!-- ============================= -->
+<div id="bloom-screen">
+  <div id="petal-field"></div>
+  <div id="flower-field"></div>
+  <p id="bloom-hint">tap anywhere to begin</p>
+</div>
+
+<!-- ============================= -->
+<!-- AMBIENT BACKGROUND LAYERS     -->
+<!-- ============================= -->
+<div id="ambient-layer" aria-hidden="true">
+  <div id="ambient-petals"></div>
+  <div id="ambient-hearts"></div>
+  <div id="sparkles"></div>
+  <div id="bokeh"></div>
+</div>
+
+<!-- ============================= -->
+<!-- MAIN EXPERIENCE               -->
+<!-- ============================= -->
+<main id="main-content">
+
+  <!-- ENVELOPE SCENE -->
+  <section id="envelope-scene">
+    <div id="envelope-wrap">
+      <div id="envelope" tabindex="0" role="button" aria-label="Open the envelope">
+        <div class="env-shadow"></div>
+        <div class="env-back"></div>
+        <div class="env-letter-peek"></div>
+        <div class="env-flap"></div>
+        <div class="env-seal">
+          <span>&#10084;</span>
+        </div>
+        <div class="env-front-left"></div>
+        <div class="env-front-right"></div>
+      </div>
+      <p id="envelope-caption">For the Love of My Life <span class="heart-glyph">&#10084;</span></p>
+    </div>
+  </section>
+
+  <!-- LETTER SCENE -->
+  <section id="letter-scene" class="hidden">
+    <div id="letter-paper">
+      <div id="letter-content">
+        <p class="letter-line" data-text="My pretty girl,"></p>
+        <p class="letter-line" data-text="From the moment you came into my life, everything changed &mdash; i found happiness , peace ,and i found my home , something i never felt."></p>
+        <p class="letter-line" data-text="Every year with you feels like a new chapter of the same beautiful story, one I never want to stop writing"></p>
+        <p class="letter-line" data-text="Thank you for loving me exactly as I am, for holding us for the hard days , and im sorry for everything bad i did to you , my love for u never changed, you still my little baby, the pure soul that i alwways loved"></p>
+        <p class="letter-line" data-text="Happy Anniversary MY LOVE."></p>
+        <div class="letter-signature">
+          <p>Forever Yours, 01.07.2023</p>
+          <p class="signature-name">ZEUS <span class="heart-glyph">&#10084;</span></p>
+        </div>
+      </div>
+      <button id="close-letter" aria-label="Close letter">&times;</button>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section id="countdown-section">
+    <p class="section-label">Together for</p>
+    <div id="countdown" class="countdown-grid">
+      <div class="countdown-unit"><span id="cd-years">0</span><small>Years</small></div>
+      <div class="countdown-unit"><span id="cd-months">0</span><small>Months</small></div>
+      <div class="countdown-unit"><span id="cd-days">0</span><small>Days</small></div>
+      <div class="countdown-unit"><span id="cd-hours">0</span><small>Hours</small></div>
+      <div class="countdown-unit"><span id="cd-minutes">0</span><small>Minutes</small></div>
+      <div class="countdown-unit"><span id="cd-seconds">0</span><small>Seconds</small></div>
+    </div>
+  </section>
+
+  <!-- LOVE QUOTE -->
+  <section id="quote-section">
+    <p id="love-quote" class="fade-quote"></p>
+  </section>
+
+  <!-- MEMORY GALLERY -->
+  <section id="gallery-section">
+    <p class="section-label">Our Memories</p>
+    <div id="gallery" class="masonry-gallery">
+      <!-- Populated by script.js — replace src values with your own photos -->
+      <div class="gallery-item"><img src="assets/images/memory-1.jpg" alt="A cherished memory together" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/images/memory-2.jpg" alt="A cherished memory together" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/images/memory-3.jpg" alt="A cherished memory together" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/images/memory-4.jpg" alt="A cherished memory together" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/images/memory-5.jpg" alt="A cherished memory together" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/images/memory-6.jpg" alt="A cherished memory together" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- FINAL SURPRISE TRIGGER -->
+  <section id="final-trigger-section">
+    <button id="final-surprise-btn" class="ornate-btn ornate-btn--gold">One More Surprise <span class="heart-glyph">&#10084;</span></button>
+  </section>
+
+</main>
+
+<!-- ============================= -->
+<!-- LIGHTBOX FOR GALLERY          -->
+<!-- ============================= -->
+<div id="lightbox" class="hidden">
+  <button id="lightbox-close" aria-label="Close image">&times;</button>
+  <img id="lightbox-img" src="" alt="Enlarged memory">
+</div>
+
+<!-- ============================= -->
+<!-- FLOATING MUSIC CONTROL        -->
+<!-- ============================= -->
+<div id="music-control">
+  <button id="music-toggle" aria-label="Play or pause music">
+    <span id="music-icon">&#9835;</span>
+  </button>
+  <div id="music-panel">
+    <button id="music-play" title="Play">&#9658;</button>
+    <button id="music-pause" title="Pause">&#10073;&#10073;</button>
+    <button id="music-mute" title="Mute">&#128264;</button>
+  </div>
+</div>
+<audio id="bg-music" loop preload="none">
+  <!-- Replace with your own track -->
+  <source src="assets/music/background-song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ============================= -->
+<!-- FINAL SURPRISE FULLSCREEN     -->
+<!-- ============================= -->
+<div id="final-surprise" class="hidden">
+  <div id="final-stars"></div>
+  <div id="final-petals"></div>
+  <canvas id="heart-canvas"></canvas>
+  <div id="final-text">
+    <h2>Happy Anniversary, My Love <span class="heart-glyph">&#10084;</span></h2>
+    <p class="final-sub-line">No matter how many years pass&hellip;</p>
+    <p class="final-sub-line">I will always choose you.</p>
+    <p class="final-sub-line">Again.</p>
+    <p class="final-sub-line">Again.</p>
+    <p class="final-sub-line">And Again.</p>
+  </div>
+  <button id="final-close" aria-label="Close surprise">&times;</button>
+</div>
+
+<!-- Custom cursor flower -->
+<div id="cursor-flower" aria-hidden="true"></div>
+
+<!-- Scripts -->
+<script src="js/flowers.js"></script>
+<script src="js/envelope.js"></script>
+<script src="js/music.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

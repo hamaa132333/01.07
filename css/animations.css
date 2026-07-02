@@ -1,0 +1,117 @@
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+/* ---- Gentle pulse for hints / seal ---- */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-4px); }
+}
+
+@keyframes seal-pulse {
+  0%, 100% { box-shadow: 0 3px 8px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.3), 0 0 0 0 rgba(212,175,55,0.5); }
+  50% { box-shadow: 0 3px 8px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.3), 0 0 0 8px rgba(212,175,55,0); }
+}
+
+/* ---- Falling petals (opening bloom + ambient) ---- */
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(var(--drift-start, 0), -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.9; }
+  100% {
+    transform: translate3d(var(--drift-end, 40px), 110vh, 0) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+/* ---- Blooming peony flower ---- */
+@keyframes peony-bloom {
+  0% { transform: scale(0) rotate(-8deg); opacity: 0; }
+  60% { transform: scale(1.08) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes peony-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+
+/* ---- Curtain parting of flowers ---- */
+@keyframes curtain-left {
+  to { transform: translateX(-110%); opacity: 0; }
+}
+@keyframes curtain-right {
+  to { transform: translateX(110%); opacity: 0; }
+}
+
+/* ---- Fade / rise for quotes ---- */
+@keyframes fade-rise {
+  0% { opacity: 0; transform: translateY(14px); }
+  15% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* ---- Sparkle twinkle ---- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ---- Bokeh drifting ---- */
+@keyframes bokeh-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -30px) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* ---- Floating hearts rising ---- */
+@keyframes heart-rise {
+  0% { transform: translateY(0) scale(0.7); opacity: 0; }
+  15% { opacity: 0.7; }
+  85% { opacity: 0.5; }
+  100% { transform: translateY(-70vh) scale(1); opacity: 0; }
+}
+
+/* ---- Typewriter caret blink ---- */
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ---- Final surprise text ---- */
+@keyframes final-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Star twinkle ---- */
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* ---- Heartbeat for canvas heart (applied via JS scale, kept here for reference) ---- */
+@keyframes heartbeat-ref {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.08); }
+  40% { transform: scale(0.98); }
+}
+
+/* ---- Petal burst on click ---- */
+@keyframes petal-burst {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--bx), var(--by)) scale(0); opacity: 0; }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

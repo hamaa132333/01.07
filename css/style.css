@@ -1,0 +1,681 @@
+/* ==========================================================================
+   ROMANTIC ANNIVERSARY SITE — CORE STYLES
+   Edit the CSS variables below to easily re-theme the entire site.
+   ========================================================================== */
+
+:root {
+  /* ---- Color Palette ---- */
+  --pink-soft:      #F8D7E8;
+  --pink-deep:      #E8A6C8;
+  --pink-blush:     #FBEAF2;
+  --white:          #FFFFFF;
+  --cream:          #FFF9F2;
+  --cream-deep:     #F6ECDD;
+  --gold:           #D4AF37;
+  --gold-light:     #E9CD7A;
+  --stem-green:     #A8C9A0;
+  --ink:            #5C4B4B;
+  --ink-soft:       #8A7575;
+
+  /* ---- Fonts ---- */
+  --font-script:    'Great Vibes', cursive;
+  --font-hand:      'Dancing Script', cursive;
+  --font-display:   'Playfair Display', serif;
+  --font-body:      'Poppins', sans-serif;
+
+  /* ---- Timing ---- */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-gentle: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- Reset ---- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(180deg, var(--cream) 0%, var(--pink-blush) 45%, var(--cream) 100%);
+  color: var(--ink);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (hover: none) {
+  body { cursor: auto; }
+  #cursor-flower { display: none; }
+}
+
+img { max-width: 100%; display: block; }
+button { font-family: inherit; border: none; cursor: pointer; background: none; }
+
+.hidden { display: none !important; }
+
+.heart-glyph { color: var(--pink-deep); }
+
+.section-label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.section-label::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0.6rem auto 0;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   CUSTOM CURSOR
+   ========================================================================== */
+#cursor-flower {
+  position: fixed;
+  top: 0; left: 0;
+  width: 22px; height: 22px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, var(--pink-deep) 0%, var(--pink-soft) 60%, transparent 75%);
+  border-radius: 50%;
+  transition: transform 0.08s var(--ease-gentle);
+  filter: drop-shadow(0 0 4px rgba(232, 166, 200, 0.6));
+}
+
+/* ==========================================================================
+   OPENING BLOOM SCREEN
+   ========================================================================== */
+#bloom-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--white);
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+#petal-field, #flower-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#bloom-hint {
+  position: relative;
+  z-index: 5;
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  margin-bottom: 8vh;
+  letter-spacing: 0.05em;
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUND (petals / hearts / sparkles / bokeh, persistent)
+   ========================================================================== */
+#ambient-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#ambient-petals, #ambient-hearts, #sparkles, #bokeh {
+  position: absolute;
+  inset: 0;
+}
+
+.bokeh-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248, 215, 232, 0.55), rgba(248, 215, 232, 0));
+  filter: blur(1px);
+}
+
+.sparkle-dot {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px rgba(233, 205, 122, 0.7);
+}
+
+/* ==========================================================================
+   MAIN CONTENT
+   ========================================================================== */
+#main-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease-soft);
+}
+
+#main-content.revealed { opacity: 1; }
+
+section {
+  position: relative;
+  width: 100%;
+  padding: 6rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   ENVELOPE SCENE
+   ========================================================================== */
+#envelope-scene {
+  min-height: 100vh;
+  justify-content: center;
+}
+
+#envelope-wrap {
+  text-align: center;
+}
+
+#envelope {
+  position: relative;
+  width: 320px;
+  height: 210px;
+  margin: 0 auto;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease-soft);
+}
+
+#envelope:hover, #envelope:focus-visible {
+  transform: scale(1.04);
+}
+
+.env-shadow {
+  position: absolute;
+  bottom: -18px;
+  left: 8%;
+  width: 84%;
+  height: 24px;
+  background: rgba(92, 75, 75, 0.25);
+  filter: blur(14px);
+  border-radius: 50%;
+}
+
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--cream-deep) 100%);
+  border: 1.5px solid var(--gold);
+  border-radius: 6px;
+  box-shadow: 0 20px 45px rgba(92, 75, 75, 0.22);
+}
+
+.env-letter-peek {
+  position: absolute;
+  top: -14px;
+  left: 6%;
+  width: 88%;
+  height: 70%;
+  background: var(--white);
+  border: 1px solid var(--gold-light);
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s var(--ease-soft);
+}
+
+.env-front-left, .env-front-right {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--cream);
+  border: 1.5px solid var(--gold);
+}
+
+.env-front-left {
+  left: 0;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  border-right: none;
+}
+
+.env-front-right {
+  right: 0;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  border-left: none;
+}
+
+.env-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(160deg, var(--cream-deep), var(--cream));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border: 1.5px solid var(--gold);
+  transform-origin: top center;
+  transition: transform 0.8s var(--ease-soft);
+  z-index: 3;
+}
+
+.env-seal {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 30%, #d75c7a, #a3324f);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  font-size: 1.1rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.3);
+  z-index: 4;
+  animation: seal-pulse 2.6s ease-in-out infinite;
+}
+
+#envelope-caption {
+  margin-top: 2.2rem;
+  font-family: var(--font-script);
+  font-size: 2.1rem;
+  color: var(--ink);
+  opacity: 0.9;
+}
+
+/* Envelope opened state */
+#envelope.opened .env-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+#envelope.opened .env-letter-peek {
+  opacity: 1;
+  transform: translateY(-40px);
+}
+
+/* ==========================================================================
+   LETTER SCENE
+   ========================================================================== */
+#letter-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(92, 75, 75, 0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+#letter-paper {
+  position: relative;
+  max-width: 640px;
+  width: 100%;
+  max-height: 84vh;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(248,215,232,0.25), transparent 40%),
+    var(--cream);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 3rem 2.8rem;
+  box-shadow: 0 30px 70px rgba(92, 75, 75, 0.35);
+}
+
+#close-letter {
+  position: sticky;
+  float: right;
+  top: 0;
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+#close-letter:hover { background: rgba(232, 166, 200, 0.25); }
+
+#letter-content {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  line-height: 1.9;
+  color: var(--ink);
+  clear: both;
+}
+
+.letter-line {
+  margin-bottom: 1.1rem;
+  min-height: 1.6em;
+}
+
+.letter-signature {
+  margin-top: 2.2rem;
+  text-align: right;
+  font-family: var(--font-script);
+  font-size: 1.9rem;
+  opacity: 0;
+  transition: opacity 1s var(--ease-soft);
+}
+
+.letter-signature.show { opacity: 1; }
+
+.signature-name { color: var(--pink-deep); margin-top: 0.2rem; }
+
+/* ==========================================================================
+   COUNTDOWN
+   ========================================================================== */
+.countdown-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.countdown-unit {
+  background: var(--white);
+  border: 1px solid var(--pink-soft);
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  min-width: 84px;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(232, 166, 200, 0.18);
+}
+
+.countdown-unit span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--pink-deep);
+  font-weight: 700;
+}
+
+.countdown-unit small {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ==========================================================================
+   LOVE QUOTES
+   ========================================================================== */
+#quote-section {
+  min-height: 30vh;
+  justify-content: center;
+}
+
+#love-quote {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  text-align: center;
+  max-width: 700px;
+  color: var(--ink);
+  opacity: 0;
+}
+
+/* ==========================================================================
+   MEMORY GALLERY
+   ========================================================================== */
+.masonry-gallery {
+  column-count: 3;
+  column-gap: 1rem;
+  max-width: 960px;
+  width: 100%;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid var(--white);
+  box-shadow: 0 12px 28px rgba(92, 75, 75, 0.18);
+  cursor: pointer;
+  transition: transform 0.45s var(--ease-soft), box-shadow 0.45s var(--ease-soft);
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(92, 75, 75, 0.28);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.6s var(--ease-soft);
+}
+
+.gallery-item:hover img { transform: scale(1.06); }
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(30, 20, 25, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+#lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 1.5rem; right: 1.8rem;
+  color: var(--white);
+  font-size: 2rem;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.ornate-btn {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+  padding: 0.9rem 2.2rem;
+  border-radius: 40px;
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.2);
+  transition: all 0.4s var(--ease-soft);
+}
+
+.ornate-btn:hover {
+  background: var(--gold);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(212, 175, 55, 0.35);
+}
+
+.ornate-btn--gold {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--white);
+  border: none;
+}
+
+.ornate-btn--gold:hover {
+  filter: brightness(1.08);
+}
+
+/* ==========================================================================
+   FLOATING MUSIC CONTROL
+   ========================================================================== */
+#music-control {
+  position: fixed;
+  bottom: 1.6rem;
+  right: 1.6rem;
+  z-index: 800;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+#music-toggle {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 10px 24px rgba(92, 75, 75, 0.22);
+  font-size: 1.3rem;
+  color: var(--pink-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#music-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: var(--white);
+  border: 1px solid var(--pink-soft);
+  border-radius: 14px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 24px rgba(92, 75, 75, 0.18);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: all 0.3s var(--ease-soft);
+}
+
+#music-control.open #music-panel {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#music-panel button {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: var(--ink);
+  transition: background 0.3s;
+}
+
+#music-panel button:hover { background: var(--pink-blush); }
+
+/* ==========================================================================
+   FINAL SURPRISE
+   ========================================================================== */
+#final-surprise {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: radial-gradient(ellipse at center, #241b2e 0%, #0f0a14 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#final-stars, #final-petals {
+  position: absolute;
+  inset: 0;
+}
+
+.star-dot {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: var(--white);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+#heart-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#final-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+#final-text h2 {
+  font-family: var(--font-script);
+  font-size: 3rem;
+  color: var(--gold-light);
+  text-shadow: 0 0 20px rgba(233, 205, 122, 0.5);
+  opacity: 0;
+  animation: final-fade-in 1.6s var(--ease-soft) forwards;
+  animation-delay: 0.3s;
+}
+
+.final-sub-line {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: var(--pink-blush);
+  margin-top: 0.6rem;
+  opacity: 0;
+  animation: final-fade-in 1.2s var(--ease-soft) forwards;
+}
+
+.final-sub-line:nth-of-type(1) { animation-delay: 1.4s; }
+.final-sub-line:nth-of-type(2) { animation-delay: 2.0s; }
+.final-sub-line:nth-of-type(3) { animation-delay: 2.6s; }
+.final-sub-line:nth-of-type(4) { animation-delay: 3.0s; }
+.final-sub-line:nth-of-type(5) { animation-delay: 3.4s; }
+
+#final-close {
+  position: absolute;
+  top: 1.5rem; right: 1.8rem;
+  color: var(--white);
+  font-size: 2rem;
+  z-index: 3;
+  opacity: 0.7;
+}
+#final-close:hover { opacity: 1; }
+
+/* ==========================================================================
+   PETAL / FLOWER / HEART BASE SHAPES (used by JS-generated elements)
+   ========================================================================== */
+.petal {
+  position: absolute;
+  width: 16px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, var(--pink-soft), var(--pink-deep));
+  border-radius: 60% 0 60% 0;
+  opacity: 0.85;
+  will-change: transform;
+}
+
+.peony {
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.floating-heart {
+  position: absolute;
+  color: var(--pink-deep);
+  opacity: 0;
+  font-size: 1.1rem;
+  will-change: transform, opacity;
+}
